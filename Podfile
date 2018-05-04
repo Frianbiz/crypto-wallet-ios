@@ -2,8 +2,10 @@ platform :ios, '10.0'
 use_frameworks!
 inhibit_all_warnings!
 
-def shared_pods do
+def shared_pods
     # pod à installer ici
+    pod 'web3swift', :git => 'https://github.com/MercuryProtocol/web3.swift.git', :branch => 'master'
+    pod 'Alamofire', '4.5'
 end
 
 target 'crypto-wallet' do
