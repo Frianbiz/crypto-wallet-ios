@@ -13,12 +13,21 @@ class ActionViewController: UIViewController {
         }
     }
     
-    @IBAction func done() {
+    @IBAction func doneHandler() {
         guard let extensionContext = self.extensionContext else { return }
-        extensionContext.completeRequest(returningItems: extensionContext.inputItems, completionHandler: nil)
+        extensionContext.completeRequest(returningItems: nil, completionHandler: nil)
     }
     
     @IBAction func payHandler() {
+        guard let extensionContext = self.extensionContext else { return }
+        
+        /*
+        let extensionItem = NSExtensionItem()
+        let values = [ "address" : "0x1337" ]
+        extensionItem.attachments = [ NSItemProvider(item: values, typeIdentifier: kUTTypeText as NSString)]
+        
+        extensionContext.completeRequest(returningItems: [ extensionItem ], completionHandler: nil)
+ */
     }
     
     func parseItems(completion: @escaping (String, String) -> Void) {

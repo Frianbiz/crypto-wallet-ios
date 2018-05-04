@@ -6,29 +6,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var toTextField: UITextField!
     
     @IBAction func payHandler() {
-        
         guard let json = self.serialize() else { return }
         
         let vc = UIActivityViewController(activityItems: [json], applicationActivities: [])
-        vc.excludedActivityTypes = [
-            .postToFacebook,
-            .postToTwitter,
-            .postToWeibo,
-            .message,
-            .mail,
-            .print,
-            .copyToPasteboard,
-            .assignToContact,
-            .saveToCameraRoll,
-            .addToReadingList,
-            .postToFlickr,
-            .postToVimeo,
-            .postToTencentWeibo,
-            .airDrop,
-            .openInIBooks,
-            .markupAsPDF
-        ]
-        
+        vc.completionWithItemsHandler =
+            { (activityType, completed, returnedItems, error) in
+                print(" >> ", activityType, completed, returnedItems, error)
+        }
         present(vc, animated: true, completion: nil)
     }
     
@@ -41,7 +25,6 @@ class ViewController: UIViewController {
             ]
             
             let jsonData = try JSONSerialization.data(withJSONObject: item)
-            
             json = String(data: jsonData, encoding: String.Encoding.utf8)
         } catch {
             
