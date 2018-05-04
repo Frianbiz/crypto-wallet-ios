@@ -1,0 +1,18 @@
+
+## OSX
+.DS_Store
+*.dSYM.*
+
+## User settings
+xcuserdata/
+DerivedData/
+*.pbxuser
+Pods
+
+## Builds / reports
+Metrics
+build
+*.ipa
+fastlane/report.xml
+
+## App
