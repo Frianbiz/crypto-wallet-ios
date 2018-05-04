@@ -3,13 +3,14 @@ import MobileCoreServices
 
 class ActionViewController: UIViewController {
 
-    var amount: String?;
-    var to: String?;
+    var amount: String?
+    var to: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.parseItems { to, amount in
-            print(to, amount)
+            self.to = to
+            self.amount = amount
         }
     }
     
@@ -21,40 +22,35 @@ class ActionViewController: UIViewController {
     @IBAction func payHandler() {
         guard let extensionContext = self.extensionContext else { return }
         
-        /*
+        let url = URL(string: "https://ropsten.etherscan.io/tx/0xb2c34d9cffcd0e45c4f7d17dc9cd82c2ce3c3f800e5aa53a3b897b70a004e429")
+        let item = NSItemProvider(item: url as NSSecureCoding?, typeIdentifier: String(kUTTypeURL))
+        
         let extensionItem = NSExtensionItem()
-        let values = [ "address" : "0x1337" ]
-        extensionItem.attachments = [ NSItemProvider(item: values, typeIdentifier: kUTTypeText as NSString)]
+        extensionItem.attachments = [item]
         
         extensionContext.completeRequest(returningItems: [ extensionItem ], completionHandler: nil)
- */
+
     }
     
     func parseItems(completion: @escaping (String, String) -> Void) {
-        guard let items = self.extensionContext?.inputItems as? [NSExtensionItem] else { return }
-        
-        for item in items {
-            if let itemProviders = item.attachments as? [NSItemProvider] {
-                for itemProvider in itemProviders {
-                    if itemProvider.hasItemConformingToTypeIdentifier(kUTTypeText as String) {
-                        itemProvider.loadItem(forTypeIdentifier: kUTTypeText as String, options: nil, completionHandler: { (result, error) -> Void in
-                            if let jsonString = result as? String {
-                                do {
-                                    if let data = jsonString.data(using: .utf8),
-                                        let json = try JSONSerialization.jsonObject(with: data, options : .allowFragments) as? Dictionary<String, String> {
-                                        
-                                        if let to = json["to"], let amount = json["amount"] {
-                                            completion(to, amount)
-                                        }
-                                    }
-                                } catch {
-                                    print(error)
-                                }
-                            }
-                        })
+        self.extensionContext?.inputItems
+            .compactMap({ $0 as? NSExtensionItem})
+            .compactMap({ $0.attachments as? [NSItemProvider] })
+            .compactMap({ $0 })
+            .first?
+            .first?
+            .loadItem(forTypeIdentifier: String(kUTTypeText), options: nil) { (result, error) in
+                do {
+                    if let jsonString = result as? String,
+                        let data = jsonString.data(using: .utf8),
+                        let json = try JSONSerialization.jsonObject(with: data, options : .allowFragments) as? Dictionary<String, String>,
+                        let to = json["to"],
+                        let amount = json["amount"] {
+                        completion(to, amount)
                     }
+                } catch {
+                    print(error)
                 }
-            }
         }
     }
 }
