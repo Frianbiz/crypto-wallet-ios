@@ -16,7 +16,7 @@
 		0736E140209C5D0E002D8C4D /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0736E13E209C5D0E002D8C4D /* MainInterface.storyboard */; };
 		0736E144209C5D0E002D8C4D /* pay.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0736E13A209C5D0E002D8C4D /* pay.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DDE93F6727AC8BC43BA8A5C2 /* Pods_crypto_wallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 610DF25A4847D9005EF21566 /* Pods_crypto_wallet.framework */; };
-		FFD806308C6ECE9D42D3B222 /* Pods_pay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E0A7605322BCB28625A4FC0 /* Pods_pay.framework */; };
+		F8B7598E7AB30815934C65DB /* Pods_pay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86EB59C1D67FB7D29AC94C9F /* Pods_pay.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,11 +56,11 @@
 		0736E13F209C5D0E002D8C4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		0736E141209C5D0E002D8C4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F2A94815322AABA9558EDE3 /* Pods-crypto-wallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-crypto-wallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-crypto-wallet/Pods-crypto-wallet.release.xcconfig"; sourceTree = "<group>"; };
-		2E0A7605322BCB28625A4FC0 /* Pods_pay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C7E443869FA09BAEA33237A /* Pods-pay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-pay/Pods-pay.debug.xcconfig"; sourceTree = "<group>"; };
-		5052D3A09CCDCE9A76696230 /* Pods-pay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pay.release.xcconfig"; path = "Pods/Target Support Files/Pods-pay/Pods-pay.release.xcconfig"; sourceTree = "<group>"; };
+		36808F444F2E01109BFFABC5 /* Pods-pay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pay.release.xcconfig"; path = "Pods/Target Support Files/Pods-pay/Pods-pay.release.xcconfig"; sourceTree = "<group>"; };
 		610DF25A4847D9005EF21566 /* Pods_crypto_wallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_crypto_wallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		86EB59C1D67FB7D29AC94C9F /* Pods_pay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B903EFBD8998E1B5F73C75B8 /* Pods-crypto-wallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-crypto-wallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-crypto-wallet/Pods-crypto-wallet.debug.xcconfig"; sourceTree = "<group>"; };
+		FFF41A00FC5DDCE8FDF17C30 /* Pods-pay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-pay/Pods-pay.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFD806308C6ECE9D42D3B222 /* Pods_pay.framework in Frameworks */,
+				F8B7598E7AB30815934C65DB /* Pods_pay.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,7 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				610DF25A4847D9005EF21566 /* Pods_crypto_wallet.framework */,
-				2E0A7605322BCB28625A4FC0 /* Pods_pay.framework */,
+				86EB59C1D67FB7D29AC94C9F /* Pods_pay.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -140,8 +140,8 @@
 			children = (
 				B903EFBD8998E1B5F73C75B8 /* Pods-crypto-wallet.debug.xcconfig */,
 				0F2A94815322AABA9558EDE3 /* Pods-crypto-wallet.release.xcconfig */,
-				4C7E443869FA09BAEA33237A /* Pods-pay.debug.xcconfig */,
-				5052D3A09CCDCE9A76696230 /* Pods-pay.release.xcconfig */,
+				FFF41A00FC5DDCE8FDF17C30 /* Pods-pay.debug.xcconfig */,
+				36808F444F2E01109BFFABC5 /* Pods-pay.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -174,7 +174,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0736E147209C5D0E002D8C4D /* Build configuration list for PBXNativeTarget "pay" */;
 			buildPhases = (
-				248FB46DD5829F8401FE0787 /* [CP] Check Pods Manifest.lock */,
+				5FB0C2FCECE7070631AD70D4 /* [CP] Check Pods Manifest.lock */,
 				0736E136209C5D0E002D8C4D /* Sources */,
 				0736E137209C5D0E002D8C4D /* Frameworks */,
 				0736E138209C5D0E002D8C4D /* Resources */,
@@ -247,24 +247,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		248FB46DD5829F8401FE0787 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-pay-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		4422CB1481820932D8BE80C2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -289,6 +271,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-crypto-wallet/Pods-crypto-wallet-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5FB0C2FCECE7070631AD70D4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-pay-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		92552D2C15B4CC226B59B0B1 /* [CP] Check Pods Manifest.lock */ = {
@@ -517,7 +517,7 @@
 		};
 		0736E145209C5D0E002D8C4D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4C7E443869FA09BAEA33237A /* Pods-pay.debug.xcconfig */;
+			baseConfigurationReference = FFF41A00FC5DDCE8FDF17C30 /* Pods-pay.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 289WCM65HT;
@@ -533,7 +533,7 @@
 		};
 		0736E146209C5D0E002D8C4D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5052D3A09CCDCE9A76696230 /* Pods-pay.release.xcconfig */;
+			baseConfigurationReference = 36808F444F2E01109BFFABC5 /* Pods-pay.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 289WCM65HT;

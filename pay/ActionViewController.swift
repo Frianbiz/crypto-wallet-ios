@@ -5,26 +5,29 @@ import PromiseKit
 
 class ActionViewController: UIViewController {
 
-    var amount: String?;
-    var to: String?;
+    var amount: String?
+    var to: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.parseItems { to, amount in
-            print(to, amount)
+            self.to = to
+            self.amount = amount
         }
     }
     
-    @IBAction func done() {
+    @IBAction func doneHandler() {
         guard let extensionContext = self.extensionContext else { return }
-        extensionContext.completeRequest(returningItems: extensionContext.inputItems, completionHandler: nil)
+        extensionContext.completeRequest(returningItems: nil, completionHandler: nil)
     }
     
     @IBAction func payHandler() {
+        guard let extensionContext = self.extensionContext else { return }
+        
         let web3 = Web3(rpcURL: "https://ropsten.infura.io/IC6bcZSzkOq3h3LDblZA")
         
         var hexPrivateKey = "xxx"
-        var toHex = "xxx"
+        
         
         let privateKey = try! EthereumPrivateKey(hexPrivateKey: hexPrivateKey)
         
@@ -36,8 +39,8 @@ class ActionViewController: UIViewController {
                         nonce: nonce,
                         gasPrice: EthereumQuantity(quantity: 21.gwei),
                         gasLimit: 21000,
-                        to: EthereumAddress(hex: toHex, eip55: true),
-                        value: EthereumQuantity(quantity: 100.gwei),
+                        to: EthereumAddress(hex: self.to!, eip55: true),
+                        value: EthereumQuantity(quantity: Int(self.amount!)!.gwei),
                         chainId: 3
                     )
                     try tx.sign(with: privateKey)
@@ -47,6 +50,15 @@ class ActionViewController: UIViewController {
                 web3.eth.sendRawTransaction(transaction: tx)
             }.done { hash in
                 let etherscan = "https://ropsten.etherscan.io/tx/\(hash.hex())"
+                let url = URL(string: etherscan)
+                
+                let item = NSItemProvider(item: url as NSSecureCoding?, typeIdentifier: String(kUTTypeURL))
+                
+                let extensionItem = NSExtensionItem()
+                extensionItem.attachments = [item]
+                
+                extensionContext.completeRequest(returningItems: [ extensionItem ], completionHandler: nil)
+                
                 print(etherscan)
             }.catch { error in
                 print(error)
@@ -54,30 +66,24 @@ class ActionViewController: UIViewController {
     }
     
     func parseItems(completion: @escaping (String, String) -> Void) {
-        guard let items = self.extensionContext?.inputItems as? [NSExtensionItem] else { return }
-        
-        for item in items {
-            if let itemProviders = item.attachments as? [NSItemProvider] {
-                for itemProvider in itemProviders {
-                    if itemProvider.hasItemConformingToTypeIdentifier(kUTTypeText as String) {
-                        itemProvider.loadItem(forTypeIdentifier: kUTTypeText as String, options: nil, completionHandler: { (result, error) -> Void in
-                            if let jsonString = result as? String {
-                                do {
-                                    if let data = jsonString.data(using: .utf8),
-                                        let json = try JSONSerialization.jsonObject(with: data, options : .allowFragments) as? Dictionary<String, String> {
-                                        
-                                        if let to = json["to"], let amount = json["amount"] {
-                                            completion(to, amount)
-                                        }
-                                    }
-                                } catch {
-                                    print(error)
-                                }
-                            }
-                        })
+        self.extensionContext?.inputItems
+            .compactMap({ $0 as? NSExtensionItem})
+            .compactMap({ $0.attachments as? [NSItemProvider] })
+            .compactMap({ $0 })
+            .first?
+            .first?
+            .loadItem(forTypeIdentifier: String(kUTTypeText), options: nil) { (result, error) in
+                do {
+                    if let jsonString = result as? String,
+                        let data = jsonString.data(using: .utf8),
+                        let json = try JSONSerialization.jsonObject(with: data, options : .allowFragments) as? Dictionary<String, String>,
+                        let to = json["to"],
+                        let amount = json["amount"] {
+                        completion(to, amount)
                     }
+                } catch {
+                    print(error)
                 }
-            }
         }
     }
 }

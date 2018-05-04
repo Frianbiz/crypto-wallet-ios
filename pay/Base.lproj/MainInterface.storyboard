@@ -24,7 +24,7 @@
                                     <navigationItem id="3HJ-uW-3hn">
                                         <barButtonItem key="leftBarButtonItem" title="Done" style="done" id="WYi-yp-eM6">
                                             <connections>
-                                                <action selector="done" destination="ObA-dk-sSI" id="Qdu-qn-U6V"/>
+                                                <action selector="doneHandler" destination="ObA-dk-sSI" id="Ap7-KP-wX7"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -40,7 +40,7 @@
                                 <rect key="frame" x="141" y="249" width="39" height="30"/>
                                 <state key="normal" title="payer"/>
                                 <connections>
-                                    <action selector="payHandler" destination="ObA-dk-sSI" eventType="touchUpInside" id="sji-3Q-iUz"/>
+                                    <action selector="payHandler" destination="ObA-dk-sSI" eventType="touchUpInside" id="HLt-MV-A15"/>
                                 </connections>
                             </button>
                         </subviews>
